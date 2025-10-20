@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Dennis Dwitama Halim</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .text-gradient { background: linear-gradient(135deg, #0066ff, #00ccff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0, 102, 255, 0.15); }
+        .contact-card { opacity: 0; transform: translateY(30px); }
+        .form-group { opacity: 0; transform: translateX(-30px); }
+        .nav-link { position: relative; }
+        .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: #0066ff; transition: width 0.3s ease; }
+        .nav-link:hover::after { width: 100%; }
+        .form-input { transition: all 0.3s ease; }
+        .form-input:focus { border-color: #0066ff; box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1); }
+        .success-message { display: none; }
+        .error-message { display: none; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-sm z-50 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="text-xl font-bold text-gradient">Dennis Halim</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link text-gray-700 hover:text-blue-600 font-medium">Home</a>
+                    <a href="about.html" class="nav-link text-gray-700 hover:text-blue-600 font-medium">About</a>
+                    <a href="projects.html" class="nav-link text-gray-700 hover:text-blue-600 font-medium">Projects</a>
+                    <a href="contact.html" class="nav-link text-blue-600 font-medium">Contact</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-blue-600">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-16 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-5xl font-bold mb-6">Get In Touch</h1>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Ready to discuss how data science and analytics can drive your business forward? 
+                    Let's connect and explore collaboration opportunities.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Information -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-3 gap-8 mb-16">
+                <div class="contact-card text-center">
+                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Email</h3>
+                    <p class="text-gray-600 mb-2">Primary contact method</p>
+                    <a href="mailto:dennisdwitamahalim@link.cuhk.edu.cn" class="text-blue-600 hover:text-blue-700 font-semibold">
+                        dennisdwitamahalim@link.cuhk.edu.cn
+                    </a>
+                </div>
+                
+                <div class="contact-card text-center">
+                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM12 2a2 2 0 100 4 2 2 0 000-4z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">LinkedIn</h3>
+                    <p class="text-gray-600 mb-2">Professional network</p>
+                    <a href="https://linkedin.com/in/dennisdwitamahalim" target="_blank" class="text-blue-600 hover:text-blue-700 font-semibold">
+                        linkedin.com/in/dennisdwitamahalim
+                    </a>
+                </div>
+                
+                <div class="contact-card text-center">
+                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Phone</h3>
+                    <p class="text-gray-600 mb-2">Direct line</p>
+                    <a href="tel:+6285288819081" class="text-blue-600 hover:text-blue-700 font-semibold">
+                        +62 85288819081
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Send a Message</h2>
+                <p class="text-xl text-gray-600">I'd love to hear about your project and discuss how I can help</p>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-lg p-8">
+                <form id="contact-form" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="form-group">
+                            <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">Full Name *</label>
+                            <input type="text" id="name" name="name" required 
+                                   class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none">
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">Email Address *</label>
+                            <input type="email" id="email" name="email" required 
+                                   class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none">
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="form-group">
+                            <label for="company" class="block text-sm font-semibold text-gray-700 mb-2">Company/Organization</label>
+                            <input type="text" id="company" name="company" 
+                                   class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject" class="block text-sm font-semibold text-gray-700 mb-2">Subject *</label>
+                            <select id="subject" name="subject" required 
+                                    class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none">
+                                <option value="">Select a topic</option>
+                                <option value="job-opportunity">Job Opportunity</option>
+                                <option value="consulting">Consulting Project</option>
+                                <option value="collaboration">Research Collaboration</option>
+                                <option value="internship">Internship</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message" class="block text-sm font-semibold text-gray-700 mb-2">Message *</label>
+                        <textarea id="message" name="message" rows="6" required 
+                                  placeholder="Tell me about your project, timeline, and how I can help..."
+                                  class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none resize-none"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="flex items-center">
+                            <input type="checkbox" id="privacy" name="privacy" required 
+                                   class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                            <label for="privacy" class="ml-2 text-sm text-gray-600">
+                                I agree to the <a href="#" class="text-blue-600 hover:text-blue-700">privacy policy</a> and 
+                                understand that my information will be used to respond to this inquiry.
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="submit" 
+                                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105">
+                            Send Message
+                        </button>
+                    </div>
+                    
+                    <div class="success-message bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg">
+                        <strong>Success!</strong> Your message has been sent successfully. I'll get back to you within 24 hours.
+                    </div>
+                    
+                    <div class="error-message bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg">
+                        <strong>Error!</strong> There was a problem sending your message. Please try again or contact me directly via email.
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Availability & Response Time -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Availability & Response</h2>
+                <p class="text-xl text-gray-600">Current status and communication preferences</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="contact-card text-center bg-green-50 rounded-lg p-6">
+                    <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <div class="w-3 h-3 bg-white rounded-full"></div>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Status</h3>
+                    <p class="text-green-600 font-semibold">Available</p>
+                    <p class="text-sm text-gray-600">Open to opportunities</p>
+                </div>
+                
+                <div class="contact-card text-center bg-blue-50 rounded-lg p-6">
+                    <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Response Time</h3>
+                    <p class="text-blue-600 font-semibold">Within 24 hours</p>
+                    <p class="text-sm text-gray-600">Typical response</p>
+                </div>
+                
+                <div class="contact-card text-center bg-purple-50 rounded-lg p-6">
+                    <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Time Zone</h3>
+                    <p class="text-purple-600 font-semibold">HKT (UTC+8)</p>
+                    <p class="text-sm text-gray-600">Hong Kong</p>
+                </div>
+                
+                <div class="contact-card text-center bg-orange-50 rounded-lg p-6">
+                    <div class="w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 0V6a2 2 0 012-2h4a2 2 0 012 2v1m-6 0h8m-8 0v10a2 2 0 002 2h4a2 2 0 002-2V7m-8 0V6a2 2 0 012-2h4a2 2 0 012 2v1"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Visa Status</h3>
+                    <p class="text-orange-600 font-semibold">HK IANG-holder</p>
+                    <p class="text-sm text-gray-600">Work authorization</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location & Preferences -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div class="contact-card">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Preferred Communication</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center mr-4">
+                                <span class="text-white text-sm font-bold">1</span>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-900">Email</p>
+                                <p class="text-gray-600 text-sm">Detailed project discussions and documentation</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center mr-4">
+                                <span class="text-white text-sm font-bold">2</span>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-900">LinkedIn</p>
+                                <p class="text-gray-600 text-sm">Professional networking and quick updates</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center mr-4">
+                                <span class="text-white text-sm font-bold">3</span>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-900">Phone/Video Call</p>
+                                <p class="text-gray-600 text-sm">Complex discussions and interviews</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-card">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Current Focus Areas</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <h4 class="font-semibold text-gray-900 mb-2">Finance & Banking</h4>
+                            <p class="text-gray-600 text-sm">Quantitative analysis, risk management, fintech</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <h4 class="font-semibold text-gray-900 mb-2">Data Science</h4>
+                            <p class="text-gray-600 text-sm">Machine learning, AI implementation, analytics</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <h4 class="font-semibold text-gray-900 mb-2">Consulting</h4>
+                            <p class="text-gray-600 text-sm">Business intelligence, process optimization</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <h4 class="font-semibold text-gray-900 mb-2">Research</h4>
+                            <p class="text-gray-600 text-sm">Academic collaboration, R&D projects</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-400">© 2025 Dennis Dwitama Halim. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Contact form functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate contact cards
+            const contactCards = document.querySelectorAll('.contact-card');
+            const contactObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        anime({
+                            targets: entry.target,
+                            opacity: [0, 1],
+                            translateY: [30, 0],
+                            duration: 600,
+                            easing: 'easeOutCubic',
+                            delay: index * 100
+                        });
+                    }
+                });
+            }, { threshold: 0.2 });
+            
+            contactCards.forEach(card => {
+                contactObserver.observe(card);
+            });
+            
+            // Animate form groups
+            const formGroups = document.querySelectorAll('.form-group');
+            const formObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        anime({
+                            targets: entry.target,
+                            opacity: [0, 1],
+                            translateX: [-30, 0],
+                            duration: 500,
+                            easing: 'easeOutCubic',
+                            delay: index * 50
+                        });
+                    }
+                });
+            }, { threshold: 0.3 });
+            
+            formGroups.forEach(group => {
+                formObserver.observe(group);
+            });
+            
+            // Form submission
+            const form = document.getElementById('contact-form');
+            const successMessage = document.querySelector('.success-message');
+            const errorMessage = document.querySelector('.error-message');
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData);
+                
+                // Validate form
+                if (!data.name || !data.email || !data.subject || !data.message || !data.privacy) {
+                    showMessage('error', 'Please fill in all required fields.');
+                    return;
+                }
+                
+                // Email validation
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(data.email)) {
+                    showMessage('error', 'Please enter a valid email address.');
+                    return;
+                }
+                
+                // Simulate form submission (replace with actual endpoint)
+                submitForm(data);
+            });
+            
+            function submitForm(data) {
+                // Show loading state
+                const submitBtn = form.querySelector('button[type="submit"]');
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Sending...';
+                submitBtn.disabled = true;
+                
+                // Simulate API call
+                setTimeout(() => {
+                    // Reset button
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                    
+                    // Show success message
+                    showMessage('success', 'Thank you for your message! I will get back to you within 24 hours.');
+                    
+                    // Reset form
+                    form.reset();
+                    
+                    // Animate form reset
+                    anime({
+                        targets: form,
+                        scale: [1, 0.98, 1],
+                        duration: 400,
+                        easing: 'easeOutCubic'
+                    });
+                    
+                }, 2000);
+            }
+            
+            function showMessage(type, message) {
+                // Hide all messages
+                successMessage.style.display = 'none';
+                errorMessage.style.display = 'none';
+                
+                // Show appropriate message
+                if (type === 'success') {
+                    successMessage.textContent = message;
+                    successMessage.style.display = 'block';
+                    
+                    // Auto-hide after 5 seconds
+                    setTimeout(() => {
+                        successMessage.style.display = 'none';
+                    }, 5000);
+                } else {
+                    errorMessage.textContent = message;
+                    errorMessage.style.display = 'block';
+                }
+                
+                // Animate message appearance
+                anime({
+                    targets: type === 'success' ? successMessage : errorMessage,
+                    opacity: [0, 1],
+                    translateY: [-20, 0],
+                    duration: 400,
+                    easing: 'easeOutCubic'
+                });
+            }
+            
+            // Form input animations
+            const inputs = document.querySelectorAll('.form-input');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    anime({
+                        targets: this,
+                        scale: [1, 1.02, 1],
+                        duration: 300,
+                        easing: 'easeOutCubic'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

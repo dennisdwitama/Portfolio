@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Dennis Dwitama Halim</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #0a0a0a;
+            color: #ffffff;
+        }
+        .text-gradient { 
+            background: linear-gradient(135deg, #0066ff, #00ccff); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+        }
+        .card-hover { 
+            transition: all 0.3s ease; 
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .card-hover:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 20px 40px rgba(0, 102, 255, 0.15); 
+            background: rgba(255, 255, 255, 0.08);
+        }
+        .project-card { opacity: 0; transform: translateY(30px); }
+        .filter-btn { 
+            transition: all 0.3s ease; 
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid #0066ff;
+            color: #0066ff;
+        }
+        .filter-btn.active { 
+            background: #0066ff; 
+            color: white; 
+            box-shadow: 0 0 20px rgba(0, 102, 255, 0.3);
+        }
+        .nav-link { 
+            position: relative; 
+            color: #e5e5e5;
+        }
+        .nav-link::after { 
+            content: ''; 
+            position: absolute; 
+            bottom: -2px; 
+            left: 0; 
+            width: 0; 
+            height: 2px; 
+            background: #0066ff; 
+            transition: width 0.3s ease; 
+        }
+        .nav-link:hover::after { width: 100%; }
+        .modal { 
+            display: none; 
+            position: fixed; 
+            z-index: 1000; 
+            left: 0; 
+            top: 0; 
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0,0,0,0.9); 
+        }
+        .modal-content { 
+            background-color: #1a1a1a; 
+            margin: 5% auto; 
+            padding: 0; 
+            width: 90%; 
+            max-width: 800px; 
+            border-radius: 12px; 
+            max-height: 90vh; 
+            overflow-y: auto; 
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .close { 
+            color: #aaa; 
+            float: right; 
+            font-size: 28px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            padding: 10px; 
+        }
+        .close:hover { color: #ffffff; }
+        .artistic-text {
+            font-family: 'Playfair Display', serif;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+        .mono-text {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .section-dark {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+        }
+        .section-darker {
+            background: #000000;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glow { 
+            box-shadow: 0 0 20px rgba(0, 102, 255, 0.3); 
+            background: linear-gradient(135deg, #0066ff, #0052cc);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-black/80 backdrop-blur-md z-50 border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="text-xl font-bold text-gradient artistic-text">Dennis Halim</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link hover:text-white font-medium">Home</a>
+                    <a href="about.html" class="nav-link hover:text-white font-medium">About</a>
+                    <a href="projects.html" class="nav-link text-white font-medium">Projects</a>
+                    <a href="contact.html" class="nav-link hover:text-white font-medium">Contact</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-16 bg-gradient-to-br from-gray-900 to-black text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-5xl font-bold artistic-text mb-6">My Projects</h1>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Explore my portfolio of data science, finance, and AI projects that demonstrate 
+                    quantitative problem-solving and measurable business impact.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Filters -->
+    <section class="py-12 section-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button class="filter-btn active px-6 py-3 rounded-full font-semibold" data-filter="all">
+                    All Projects
+                </button>
+                <button class="filter-btn px-6 py-3 rounded-full font-semibold" data-filter="finance">
+                    Finance & Analytics
+                </button>
+                <button class="filter-btn px-6 py-3 rounded-full font-semibold" data-filter="ml">
+                    Machine Learning
+                </button>
+                <button class="filter-btn px-6 py-3 rounded-full font-semibold" data-filter="research">
+                    Research & Development
+                </button>
+                <button class="filter-btn px-6 py-3 rounded-full font-semibold" data-filter="automation">
+                    Automation & Tools
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="pb-20 section-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div id="projects-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Project 1: Corporate Finance & Valuation -->
+                <div class="project-card glass-card rounded-lg overflow-hidden card-hover" data-category="finance" data-project="walmart-valuation">
+                    <div class="h-48 bg-gradient-to-br from-blue-600 to-purple-700 flex items-center justify-center relative">
+                        <div class="absolute inset-0 bg-black/30"></div>
+                        <div class="text-white text-center relative z-10">
+                            <div class="text-5xl font-bold mb-2 artistic-text">$341B</div>
+                            <div class="text-lg mono-text">Equity Valuation</div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2 artistic-text">Walmart DCF Valuation</h3>
+                        <p class="text-gray-300 mb-4">Comprehensive corporate finance analysis with 3-statement model, FCFF analysis, and DCF valuation.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-blue-900/50 text-blue-300 rounded-full text-sm mono-text">DCF</span>
+                            <span class="px-3 py-1 bg-blue-900/50 text-blue-300 rounded-full text-sm mono-text">WACC</span>
+                            <span class="px-3 py-1 bg-blue-900/50 text-blue-300 rounded-full text-sm mono-text">Financial Modeling</span>
+                        </div>
+                        <div class="text-sm text-gray-400 mb-4 mono-text">
+                            <strong>Key Result:</strong> WACC 8.1%, β 0.58, $42.52/share vs market $91.16
+                        </div>
+                        <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-semibold transition-colors" onclick="openModal('walmart-valuation')">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 2: Credit Scoring -->
+                <div class="project-card glass-card rounded-lg overflow-hidden card-hover" data-category="ml" data-project="credit-scoring">
+                    <div class="h-48 bg-gradient-to-br from-green-600 to-teal-700 flex items-center justify-center relative">
+                        <div class="absolute inset-0 bg-black/30"></div>
+                        <div class="text-white text-center relative z-10">
+                            <div class="text-5xl font-bold mb-2 artistic-text">0.86</div>
+                            <div class="text-lg mono-text">AUC Score</div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2 artistic-text">Credit Scoring with ML</h3>
+                        <p class="text-gray-300 mb-4">Advanced machine learning model for digital lending with enhanced credit risk assessment and explainability.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-green-900/50 text-green-300 rounded-full text-sm mono-text">XGBoost</span>
+                            <span class="px-3 py-1 bg-green-900/50 text-green-300 rounded-full text-sm mono-text">SHAP</span>
+                            <span class="px-3 py-1 bg-green-900/50 text-green-300 rounded-full text-sm mono-text">Python</span>
+                        </div>
+                        <div class="text-sm text-gray-400 mb-4 mono-text">
+                            <strong>Performance:</strong> AUC improved from 0.72 to 0.86 with explainable AI
+                        </div>
+                        <button class="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg font-semibold transition-colors" onclick="openModal('credit-scoring')">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 3: Fama-French Portfolio -->
+                <div class="project-card glass-card rounded-lg overflow-hidden card-hover" data-category="research" data-project="fama-french">
+                    <div class="h-48 bg-gradient-to-br from-purple-600 to-pink-700 flex items-center justify-center relative">
+                        <div class="absolute inset-0 bg-black/30"></div>
+                        <div class="text-white text-center relative z-10">
+                            <div class="text-5xl font-bold mb-2 artistic-text">+255%</div>
+                            <div class="text-lg mono-text">Cumulative Returns</div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2 artistic-text">Fama-French Portfolio Testing</h3>
+                        <p class="text-gray-300 mb-4">Statistical arbitrage pipeline using cointegration-based pairs trading on size-profit portfolios.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-purple-900/50 text-purple-300 rounded-full text-sm mono-text">Pairs Trading</span>
+                            <span class="px-3 py-1 bg-purple-900/50 text-purple-300 rounded-full text-sm mono-text">Cointegration</span>
+                            <span class="px-3 py-1 bg-purple-900/50 text-purple-300 rounded-full text-sm mono-text">R</span>
+                        </div>
+                        <div class="text-sm text-gray-400 mb-4 mono-text">
+                            <strong>Results:</strong> +23% and +255% cumulative returns in backtests
+                        </div>
+                        <button class="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-lg font-semibold transition-colors" onclick="openModal('fama-french')">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 4: AI Educator Tools -->
+                <div class="project-card glass-card rounded-lg overflow-hidden card-hover" data-category="automation" data-project="ai-educator">
+                    <div class="h-48 bg-gradient-to-br from-orange-600 to-red-700 flex items-center justify-center relative">
+                        <div class="absolute inset-0 bg-black/30"></div>
+                        <div class="text-white text-center relative z-10">
+                            <div class="text-5xl font-bold mb-2 artistic-text">70%</div>
+                            <div class="text-lg mono-text">Time Reduction</div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2 artistic-text">AI Educator Platform</h3>
+                        <p class="text-gray-300 mb-4">Automated curriculum build system with LLM pipelines and AI educator tools for worksheet generation and grading.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-orange-900/50 text-orange-300 rounded-full text-sm mono-text">LLM</span>
+                            <span class="px-3 py-1 bg-orange-900/50 text-orange-300 rounded-full text-sm mono-text">GPT-4o</span>
+                            <span class="px-3 py-1 bg-orange-900/50 text-orange-300 rounded-full text-sm mono-text">Python</span>
+                        </div>
+                        <div class="text-sm text-gray-400 mb-4 mono-text">
+                            <strong>Impact:</strong> 70% reduction in manual authoring time, 30 min/assignment saved
+                        </div>
+                        <button class="w-full bg-orange-600 hover:bg-orange-700 text-white py-2 rounded-lg font-semibold transition-colors" onclick="openModal('ai-educator')">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 5: Sales Support Automation -->
+                <div class="project-card glass-card rounded-lg overflow-hidden card-hover" data-category="automation" data-project="sales-automation">
+                    <div class="h-48 bg-gradient-to-br from-teal-600 to-blue-700 flex items-center justify-center relative">
+                        <div class="absolute inset-0 bg-black/30"></div>
+                        <div class="text-white text-center relative z-10">
+                            <div class="text-5xl font-bold mb-2 artistic-text">12%</div>
+                            <div class="text-lg mono-text">Lead Time Reduction</div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2 artistic-text">Sales Support Automation</h3>
+                        <p class="text-gray-300 mb-4">Automated PO processing and ETA tracking system for overseas sales operations across multiple countries.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-teal-900/50 text-teal-300 rounded-full text-sm mono-text">Power Query</span>
+                            <span class="px-3 py-1 bg-teal-900/50 text-teal-300 rounded-full text-sm mono-text">Excel</span>
+                            <span class="px-3 py-1 bg-teal-900/50 text-teal-300 rounded-full text-sm mono-text">Automation</span>
+                        </div>
+                        <div class="text-sm text-gray-400 mb-4 mono-text">
+                            <strong>Results:</strong> 12% lead time reduction, 6% OTIF improvement
+                        </div>
+                        <button class="w-full bg-teal-600 hover:bg-teal-700 text-white py-2 rounded-lg font-semibold transition-colors" onclick="openModal('sales-automation')">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 6: Research Portfolio -->
+                <div class="project-card glass-card rounded-lg overflow-hidden card-hover" data-category="research" data-project="research-portfolio">
+                    <div class="h-48 bg-gradient-to-br from-indigo-600 to-purple-700 flex items-center justify-center relative">
+                        <div class="absolute inset-0 bg-black/30"></div>
+                        <div class="text-white text-center relative z-10">
+                            <div class="text-5xl font-bold mb-2 artistic-text">6</div>
+                            <div class="text-lg mono-text">Research Papers</div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2 artistic-text">Academic Research Portfolio</h3>
+                        <p class="text-gray-300 mb-4">Collection of research projects in quantitative finance, machine learning, and statistical analysis.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-indigo-900/50 text-indigo-300 rounded-full text-sm mono-text">Research</span>
+                            <span class="px-3 py-1 bg-indigo-900/50 text-indigo-300 rounded-full text-sm mono-text">Statistics</span>
+                            <span class="px-3 py-1 bg-indigo-900/50 text-indigo-300 rounded-full text-sm mono-text">Python</span>
+                        </div>
+                        <div class="text-sm text-gray-400 mb-4 mono-text">
+                            <strong>Focus:</strong> Quantitative methods, financial modeling, data analysis
+                        </div>
+                        <button class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded-lg font-semibold transition-colors" onclick="openModal('research-portfolio')">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Modals -->
+    <div id="modal-walmart-valuation" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="p-8">
+                <h2 class="text-3xl font-bold text-white mb-6 artistic-text">Walmart DCF Valuation Project</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-white mb-4 mono-text">Project Overview</h3>
+                        <p class="text-gray-300 mb-4">
+                            Comprehensive corporate finance analysis featuring a detailed 3-statement financial model 
+                            linked to a DCF valuation framework. The project demonstrates advanced financial modeling 
+                            techniques and valuation methodologies.
+                        </p>
+                        <h4 class="font-semibold text-white mb-2 mono-text">Key Components:</h4>
+                        <ul class="text-gray-300 space-y-1 mb-4">
+                            <li>• Income Statement, Balance Sheet, Cash Flow Statement linkage</li>
+                            <li>• FCFF (Free Cash Flow to Firm) calculation and projection</li>
+                            <li>• WACC calculation with beta estimation and market risk premium</li>
+                            <li>• Sensitivity analysis on key valuation drivers</li>
+                            <li>• Monte Carlo simulation for scenario testing</li>
+                        </ul>
+                        <h4 class="font-semibold text-white mb-2 mono-text">Technical Stack:</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-blue-900/50 text-blue-300 rounded-full text-sm mono-text">Excel</span>
+                            <span class="px-3 py-1 bg-blue-900/50 text-blue-300 rounded-full text-sm mono-text">Financial Modeling</span>
+                            <span class="px-3 py-1 bg-blue-900/50 text-blue-300 rounded-full text-sm mono-text">VBA</span>
+                            <span class="px-3 py-1 bg-blue-900/50 text-blue-300 rounded-full text-sm mono-text">Data Analysis</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-white mb-4 mono-text">Key Results & Insights</h3>
+                        <div class="glass-card p-4 rounded-lg mb-4">
+                            <div class="grid grid-cols-2 gap-4 text-center">
+                                <div>
+                                    <div class="text-2xl font-bold text-blue-400">8.1%</div>
+                                    <div class="text-sm text-gray-400 mono-text">WACC</div>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-bold text-blue-400">0.58</div>
+                                    <div class="text-sm text-gray-400 mono-text">Beta</div>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-bold text-blue-400">$42.52</div>
+                                    <div class="text-sm text-gray-400 mono-text">Model Price</div>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-bold text-red-400">2.14x</div>
+                                    <div class="text-sm text-gray-400 mono-text">Market Premium</div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            The valuation model suggests that Walmart's market price reflects significant growth 
+                            expectations beyond the base case scenario, indicating either market optimism or 
+                            additional value drivers not captured in the fundamental analysis.
+                        </p>
+                        <div class="flex gap-4">
+                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm">
+                                View Model
+                            </button>
+                            <button class="border border-blue-600 text-blue-400 hover:bg-blue-600 hover:text-white px-4 py-2 rounded-lg text-sm">
+                                Download Report
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional modals would follow the same pattern for other projects -->
+
+    <!-- Call to Action -->
+    <section class="py-20 section-darker">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-bold artistic-text mb-4 text-white">Interested in Collaborating?</h2>
+            <p class="text-xl text-gray-300 mb-8">
+                Let's discuss how these project experiences can benefit your organization
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="contact.html" class="glow text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105">
+                    Get In Touch
+                </a>
+                <a href="about.html" class="border-2 border-blue-600 text-blue-400 hover:bg-blue-600 hover:text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300">
+                    Learn More About Me
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-400 mono-text">© 2025 Dennis Dwitama Halim. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Project filtering and modal functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Filter functionality
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter projects
+                    projectCards.forEach(card => {
+                        const category = card.getAttribute('data-category');
+                        if (filter === 'all' || category === filter) {
+                            card.style.display = 'block';
+                            anime({
+                                targets: card,
+                                opacity: [0, 1],
+                                scale: [0.8, 1],
+                                duration: 400,
+                                easing: 'easeOutCubic'
+                            });
+                        } else {
+                            anime({
+                                targets: card,
+                                opacity: [1, 0],
+                                scale: [1, 0.8],
+                                duration: 200,
+                                easing: 'easeOutCubic',
+                                complete: function() {
+                                    card.style.display = 'none';
+                                }
+                            });
+                        }
+                    });
+                });
+            });
+            
+            // Initial animation for project cards
+            const projectObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        anime({
+                            targets: entry.target,
+                            opacity: [0, 1],
+                            translateY: [30, 0],
+                            duration: 600,
+                            easing: 'easeOutCubic',
+                            delay: index * 100
+                        });
+                    }
+                });
+            }, { threshold: 0.2 });
+            
+            projectCards.forEach(card => {
+                projectObserver.observe(card);
+            });
+            
+            // Modal functionality
+            window.openModal = function(projectId) {
+                const modal = document.getElementById('modal-' + projectId);
+                if (modal) {
+                    modal.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                }
+            };
+            
+            // Close modal functionality
+            const closeButtons = document.querySelectorAll('.close');
+            closeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const modal = this.closest('.modal');
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                });
+            });
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', function(event) {
+                if (event.target.classList.contains('modal')) {
+                    event.target.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Dennis Dwitama Halim</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #0a0a0a;
+            color: #ffffff;
+        }
+        .text-gradient { 
+            background: linear-gradient(135deg, #0066ff, #00ccff); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent;
+        }
+        .card-hover { 
+            transition: all 0.3s ease; 
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .card-hover:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 20px 40px rgba(0, 102, 255, 0.15); 
+            background: rgba(255, 255, 255, 0.08);
+        }
+        .achievement-card { opacity: 0; transform: translateY(30px); }
+        .education-card { opacity: 0; transform: translateX(-30px); }
+        .nav-link { 
+            position: relative; 
+            color: #e5e5e5;
+        }
+        .nav-link::after { 
+            content: ''; 
+            position: absolute; 
+            bottom: -2px; 
+            left: 0; 
+            width: 0; 
+            height: 2px; 
+            background: #0066ff; 
+            transition: width 0.3s ease; 
+        }
+        .nav-link:hover::after { width: 100%; }
+        .artistic-text {
+            font-family: 'Playfair Display', serif;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+        .name-artistic {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: 3rem;
+            line-height: 0.9;
+            letter-spacing: -0.03em;
+        }
+        .mono-text {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .section-dark {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+        }
+        .section-darker {
+            background: #000000;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glow { 
+            box-shadow: 0 0 20px rgba(0, 102, 255, 0.3); 
+            background: linear-gradient(135deg, #0066ff, #0052cc);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-black/80 backdrop-blur-md z-50 border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="text-xl font-bold text-gradient artistic-text">Dennis Halim</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link hover:text-white font-medium">Home</a>
+                    <a href="about.html" class="nav-link text-white font-medium">About</a>
+                    <a href="projects.html" class="nav-link hover:text-white font-medium">Projects</a>
+                    <a href="contact.html" class="nav-link hover:text-white font-medium">Contact</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-16 bg-gradient-to-br from-gray-900 to-black text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-5xl font-bold artistic-text mb-6">About Me</h1>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    A quantitative professional bridging the gap between data science and finance, 
+                    with a proven track record of delivering measurable business impact through analytics and automation.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Summary -->
+    <section class="py-20 section-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <img src="resources/profile-photo-2.jpg" alt="Dennis Halim" class="mx-auto aspect-square object-cover rounded-2xl shadow-2xl border-4 border-gray-800
+             w-56 sm:w-64 md:w-72 lg:w-96 xl:w-[28rem] max-w-full">
+                </div>
+                <div>
+                    <h2 class="text-4xl font-bold artistic-text mb-6 text-white">Professional Profile</h2>
+                    <div class="space-y-6 text-lg text-gray-300">
+                        <p>
+                            I'm a final-year Data Science student at The Chinese University of Hong Kong, Shenzhen, 
+                            with a minor in Finance and a CGPA of 3.40/4.00. My academic journey has been supported by 
+                            prestigious scholarships, including the University Half Tuition Scholarship and 
+                            Full Accommodation Scholarship.
+                        </p>
+                        <p>
+                            Throughout my career, I've focused on delivering analytics and automation solutions that 
+                            create tangible business value. From reducing manual authoring time by 70% through LLM 
+                            pipeline automation to improving operational efficiency by 12% in supply chain processes, 
+                            I consistently translate complex data challenges into measurable results.
+                        </p>
+                        <p>
+                            As an HK IANG-holder with multilingual capabilities (Indonesian native, English professional, 
+                            Mandarin HSK 5), I bring a unique cross-cultural perspective to international business 
+                            environments, particularly across Hong Kong, mainland China, and Southeast Asian markets.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education -->
+    <section class="py-20 section-darker">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold artistic-text mb-4 text-white">Education</h2>
+                <p class="text-xl text-gray-400">Academic foundation in data science and finance</p>
+            </div>
+            <div class="max-w-4xl mx-auto">
+                <div class="education-card glass-card rounded-lg p-8 mb-8">
+                    <div class="flex flex-col md:flex-row items-start gap-6">
+                        <div class="flex-shrink-0">
+                            <div class="w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold text-white mb-2 artistic-text">B.Sc. in Data Science, Minor in Finance</h3>
+                            <p class="text-blue-400 font-semibold text-lg mb-2 mono-text">The Chinese University of Hong Kong, Shenzhen</p>
+                            <p class="text-gray-400 mb-4 mono-text">2021 – 2025 | CGPA: 3.40/4.00</p>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-semibold text-white mb-2 mono-text">Relevant Courses:</h4>
+                                    <ul class="text-gray-300 space-y-1 text-sm">
+                                        <li>• Machine Learning & Statistics</li>
+                                        <li>• Optimization & Stochastic Process</li>
+                                        <li>• Investment & Portfolio Analysis</li>
+                                        <li>• Corporate Finance & Risk Management</li>
+                                        <li>• Financial Data Analysis</li>
+                                        <li>• Options & Futures</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-white mb-2 mono-text">Academic Achievements:</h4>
+                                    <ul class="text-gray-300 space-y-1 text-sm">
+                                        <li>• University Half Tuition Scholarship</li>
+                                        <li>• Full Accommodation Scholarship</li>
+                                        <li>• Dean's List Recognition</li>
+                                        <li>• Academic Excellence Award</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Matrix -->
+    <section class="py-20 section-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold artistic-text mb-4 text-white">Technical Expertise</h2>
+                <p class="text-xl text-gray-400">Comprehensive skill set across data science and finance</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="achievement-card glass-card rounded-lg p-6 card-hover">
+                    <div class="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3 artistic-text">Programming & Data Science</h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">Python (Pandas, Scikit-learn)</span>
+                            <span class="font-semibold text-blue-400 mono-text">Expert</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">R Programming</span>
+                            <span class="font-semibold text-blue-400 mono-text">Advanced</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">SQL & Database Management</span>
+                            <span class="font-semibold text-blue-400 mono-text">Advanced</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">MATLAB & Stata</span>
+                            <span class="font-semibold text-blue-400 mono-text">Proficient</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="achievement-card glass-card rounded-lg p-6 card-hover">
+                    <div class="w-12 h-12 bg-gradient-to-br from-green-600 to-green-700 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3 artistic-text">Machine Learning & AI</h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">XGBoost & Ensemble Methods</span>
+                            <span class="font-semibold text-green-400 mono-text">Expert</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">Neural Networks (PyTorch, TF)</span>
+                            <span class="font-semibold text-green-400 mono-text">Advanced</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">LLM & GPT Integration</span>
+                            <span class="font-semibold text-green-400 mono-text">Advanced</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">SHAP & Model Explainability</span>
+                            <span class="font-semibold text-green-400 mono-text">Proficient</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="achievement-card glass-card rounded-lg p-6 card-hover">
+                    <div class="w-12 h-12 bg-gradient-to-br from-purple-600 to-purple-700 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3 artistic-text">Financial Analysis</h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">DCF & Valuation Modeling</span>
+                            <span class="font-semibold text-purple-400 mono-text">Expert</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">Portfolio Analysis</span>
+                            <span class="font-semibold text-purple-400 mono-text">Advanced</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">Risk Management</span>
+                            <span class="font-semibold text-purple-400 mono-text">Advanced</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">Options & Futures</span>
+                            <span class="font-semibold text-purple-400 mono-text">Proficient</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="achievement-card glass-card rounded-lg p-6 card-hover">
+                    <div class="w-12 h-12 bg-gradient-to-br from-orange-600 to-orange-700 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 00-2-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3 artistic-text">Business Intelligence</h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">Excel & VBA Automation</span>
+                            <span class="font-semibold text-orange-400 mono-text">Expert</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">Power BI & Data Viz</span>
+                            <span class="font-semibold text-orange-400 mono-text">Advanced</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">Power Query & ETL</span>
+                            <span class="font-semibold text-orange-400 mono-text">Advanced</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">Git & Version Control</span>
+                            <span class="font-semibold text-orange-400 mono-text">Proficient</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="achievement-card glass-card rounded-lg p-6 card-hover">
+                    <div class="w-12 h-12 bg-gradient-to-br from-red-600 to-red-700 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3 artistic-text">Languages & Communication</h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">Indonesian (Native)</span>
+                            <span class="font-semibold text-red-400 mono-text">Native</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">English (IELTS 7.5)</span>
+                            <span class="font-semibold text-red-400 mono-text">Professional</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">Mandarin (HSK 5)</span>
+                            <span class="font-semibold text-red-400 mono-text">Advanced</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">Cross-cultural Communication</span>
+                            <span class="font-semibold text-red-400 mono-text">Expert</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="achievement-card glass-card rounded-lg p-6 card-hover">
+                    <div class="w-12 h-12 bg-gradient-to-br from-indigo-600 to-indigo-700 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3 artistic-text">Quantitative Methods</h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">Statistical Analysis</span>
+                            <span class="font-semibold text-indigo-400 mono-text">Expert</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">Optimization Techniques</span>
+                            <span class="font-semibold text-indigo-400 mono-text">Advanced</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">Stochastic Processes</span>
+                            <span class="font-semibold text-indigo-400 mono-text">Advanced</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">Time Series Analysis</span>
+                            <span class="font-semibold text-indigo-400 mono-text">Proficient</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Personal Philosophy -->
+    <section class="py-20 section-darker">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold artistic-text mb-4 text-white">Professional Philosophy</h2>
+                <p class="text-xl text-gray-400">The principles that drive my work</p>
+            </div>
+            <div class="max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="glass-card rounded-lg p-8 card-hover">
+                        <div class="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4 artistic-text">Data-Driven Decisions</h3>
+                        <p class="text-gray-300">
+                            Every business challenge can be addressed through systematic data analysis and 
+                            quantitative methods. I believe in transforming complex datasets into actionable 
+                            insights that drive strategic decision-making.
+                        </p>
+                    </div>
+                    
+                    <div class="glass-card rounded-lg p-8 card-hover">
+                        <div class="w-12 h-12 bg-gradient-to-br from-green-600 to-green-700 rounded-lg flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4 artistic-text">Continuous Innovation</h3>
+                        <p class="text-gray-300">
+                            Technology evolves rapidly, and staying current with emerging tools and methodologies 
+                            is essential. I'm committed to lifelong learning and applying cutting-edge techniques 
+                            to solve real-world problems.
+                        </p>
+                    </div>
+                    
+                    <div class="glass-card rounded-lg p-8 card-hover">
+                        <div class="w-12 h-12 bg-gradient-to-br from-purple-600 to-purple-700 rounded-lg flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4 artistic-text">Collaborative Excellence</h3>
+                        <p class="text-gray-300">
+                            The best solutions emerge from diverse perspectives and collaborative efforts. 
+                            I thrive in cross-functional teams and believe in sharing knowledge to achieve 
+                            collective success.
+                        </p>
+                    </div>
+                    
+                    <div class="glass-card rounded-lg p-8 card-hover">
+                        <div class="w-12 h-12 bg-gradient-to-br from-orange-600 to-orange-700 rounded-lg flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4 artistic-text">Measurable Impact</h3>
+                        <p class="text-gray-300">
+                            Technology is most valuable when it delivers quantifiable business results. 
+                            I focus on implementing solutions that provide clear ROI and sustainable 
+                            competitive advantages.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20 section-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-bold artistic-text mb-4 text-white">Let's Create Impact Together</h2>
+            <p class="text-xl text-gray-300 mb-8">
+                Ready to leverage data science and analytics to drive your business forward?
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="contact.html" class="glow text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105">
+                    Start a Conversation
+                </a>
+                <a href="projects.html" class="border-2 border-blue-600 text-blue-400 hover:bg-blue-600 hover:text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300">
+                    View My Work
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-400 mono-text">© 2025 Dennis Dwitama Halim. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize animations for about page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate achievement cards
+            const achievementCards = document.querySelectorAll('.achievement-card');
+            const achievementObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        anime({
+                            targets: entry.target,
+                            opacity: [0, 1],
+                            translateY: [30, 0],
+                            duration: 600,
+                            easing: 'easeOutCubic',
+                            delay: index * 100
+                        });
+                    }
+                });
+            }, { threshold: 0.2 });
+            
+            achievementCards.forEach(card => {
+                achievementObserver.observe(card);
+            });
+            
+            // Animate education card
+            const educationCard = document.querySelector('.education-card');
+            if (educationCard) {
+                const educationObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            anime({
+                                targets: entry.target,
+                                opacity: [0, 1],
+                                translateX: [-30, 0],
+                                duration: 800,
+                                easing: 'easeOutCubic'
+                            });
+                        }
+                    });
+                }, { threshold: 0.3 });
+                
+                educationObserver.observe(educationCard);
+            }
+        });
+    </script>
+</body>
+</html>
